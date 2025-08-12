@@ -2,6 +2,7 @@ package com.atalaykaan.springcoredemo.rest;
 
 import com.atalaykaan.springcoredemo.common.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,7 +11,7 @@ public class DemoController {
     private Coach myCoach;
 
     @Autowired
-    public DemoController(Coach coach) {
+    public DemoController(@Qualifier("cricketCoach") Coach coach) {
         this.myCoach = coach;
     }
 
