@@ -5,8 +5,7 @@ import com.atalaykaan.springboot.thymeleafdemo.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +26,40 @@ public class EmployeeController {
 
         model.addAttribute("employees" ,employeeList);
 
-        return "list-employees";
+        return "employees/list-employees";
+    }
+
+    @GetMapping("/showFormForAdd")
+    public String showFormForAdd(Model model){
+
+        model.addAttribute("employee", new Employee());
+
+        return "employees/employee-form";
+    }
+
+    @PostMapping("/save")
+    public String addEmployee(@ModelAttribute Employee employee) {
+
+        employeeService.save(employee);
+
+        return "redirect:/employees/list";
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String updateEmployee(@RequestParam("employeeId") int employeeId, Model model) {
+
+        Employee employee = employeeService.findById(employeeId);
+
+        model.addAttribute("employee", employee);
+
+        return "employees/employee-form";
+    }
+
+    @GetMapping("/delete")
+    public String deleteEmployee(@RequestParam("employeeId") int employeeId) {
+
+        employeeService.deleteById(employeeId);
+
+        return "redirect:/employees/list";
     }
 }
