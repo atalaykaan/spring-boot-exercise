@@ -1,10 +1,10 @@
-package com.atalaykaan.cruddemo;
+package com.atalay.aopdemo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CruddemoApplicationTests {
+class AopdemoApplicationTests {
 
 	@Test
 	void contextLoads() {
