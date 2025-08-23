@@ -3,12 +3,40 @@ package com.atalay.aopdemo.dao;
 import com.atalay.aopdemo.Account;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class AccountDAOImpl implements AccountDAO{
 
     public String name;
 
     public String serviceCode;
+
+    @Override
+    public List<Account> findAccounts() {
+        return findAccounts(false);
+    }
+
+    @Override
+    public List<Account> findAccounts(boolean tripWire) {
+
+        if(tripWire) {
+            throw new RuntimeException("No soup for you!!!");
+        }
+
+        List<Account> accountsList = new ArrayList<Account>();
+
+        Account temp1 = new Account("John", "Silver");
+        Account temp2 = new Account("Kaan", "Platinum");
+        Account temp3 = new Account("Ahmet", "Gold");
+
+        accountsList.add(temp1);
+        accountsList.add(temp2);
+        accountsList.add(temp3);
+
+        return accountsList;
+    }
 
     @Override
     public void addAccount(Account account, boolean vipFlag) {

@@ -2,7 +2,13 @@ package com.atalay.aopdemo.dao;
 
 import com.atalay.aopdemo.Account;
 
+import java.util.List;
+
 public interface AccountDAO {
+
+    List<Account> findAccounts();
+
+    List<Account> findAccounts(boolean tripWire);
 
     void addAccount(Account account, boolean vipFlag);
 
